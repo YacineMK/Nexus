@@ -7,7 +7,7 @@
 2. **Clone the repository to your local machine:**
 
    ```shell
-   git clone https://github.com/YacineMK/smail
+   git clone https://github.com/<your_github_username>/smail
    ```
 3. **download libs**
 
