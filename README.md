@@ -9,23 +9,16 @@
    ```shell
    git clone https://github.com/<your_github_username>/smail
    ```
-3. **download libs**
+3. **installing dependecies**
    1. **Fedora**
       ```shell
-      sudo dnf install SDL2
+      sudo dnf install SDL2 SDL2_image-devel SDL2_ttf
       ```
-      ```shell
-      sudo dnf install SDL2_image-devel
-      ```
-   2. **Arch**
-      ```shell
-      sudo dnf install sdl2
-      ```
-      ```shell
-      sudo dnf install sdl2_image
-      ```
-   
 
+   3. **Arch**
+      ```shell
+      sudo pacman -S install sdl2 sdl2_image sdl2_ttf
+      ```
 5. **Run code**
 
    ```shell
