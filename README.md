@@ -10,20 +10,23 @@
    git clone https://github.com/<your_github_username>/smail
    ```
 3. **download libs**
-
-   ```shell
-   sudo dnf install SDL2
-   ```
+   1. **Fedora**
+      ```shell
+      sudo dnf install SDL2
+      ```
+      ```shell
+      sudo dnf install SDL2_image-devel
+      ```
+   2. **Arch**
+      ```shell
+      sudo dnf install sdl2
+      ```
+      ```shell
+      sudo dnf install sdl2_image
+      ```
    
-   ```shell
-   sudo dnf install SDL2_image-devel
-   ```
-   
-   ```shell
-   sudo dnf install SDL2_image-devel
-   ```
 
-4. **Run code**
+5. **Run code**
 
    ```shell
    gcc startpage.c -o myprograme -lSDL2 -lSDL2_ttf -lSDL2_image
