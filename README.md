@@ -4,7 +4,7 @@
 
 1. **Download sdl2**
 
-2. **Clone the repository to your local machine:**
+2. **Fork the repository and clone the repository to your local machine:**
 
    ```shell
    git clone https://github.com/<your_github_username>/smail
