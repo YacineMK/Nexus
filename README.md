@@ -22,7 +22,7 @@
 5. **Run code**
 
    ```shell
-   gcc startpage.c -o myprograme -lSDL2 -lSDL2_ttf -lSDL2_image
+   gcc -o myprogram main.c startpage.c -lSDL2 -lSDL2_ttf -lSDL2_image
    ```
 
    ```shell
