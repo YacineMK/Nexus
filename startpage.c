@@ -4,7 +4,8 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-void cleanup(SDL_Window *win, SDL_Renderer *renderer) {
+void cleanup(SDL_Window *win, SDL_Renderer *renderer)
+{
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(win);
     SDL_Quit();
@@ -12,16 +13,19 @@ void cleanup(SDL_Window *win, SDL_Renderer *renderer) {
     IMG_Quit();
 }
 
-int main() {
+int main()
+{
     SDL_Window *win;
     SDL_Renderer *renderer;
 
-    if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
+    if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
+    {
         printf("SDL_Init failed: %s\n", SDL_GetError());
         return 1;
     }
 
-    if (IMG_Init(IMG_INIT_PNG) != IMG_INIT_PNG) {
+    if (IMG_Init(IMG_INIT_PNG) != IMG_INIT_PNG)
+    {
         printf("IMG_Init failed: %s\n", IMG_GetError());
         SDL_Quit();
         return 1;
@@ -33,31 +37,34 @@ int main() {
         SDL_WINDOWPOS_CENTERED,
         800,
         800,
-        SDL_WINDOW_SHOWN
-    );
+        SDL_WINDOW_SHOWN);
 
-    if (win == NULL) {
+    if (win == NULL)
+    {
         printf("Error: %s\n", SDL_GetError());
         SDL_Quit();
         return 1;
     }
 
     renderer = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED);
-    if (renderer == NULL) {
+    if (renderer == NULL)
+    {
         printf("Error creating renderer: %s\n", SDL_GetError());
         SDL_DestroyWindow(win);
         SDL_Quit();
         return 1;
     }
 
-    if (TTF_Init() < 0) {
+    if (TTF_Init() < 0)
+    {
         printf("TTF_Init() failed: %s\n", TTF_GetError());
         cleanup(win, renderer);
         return 1;
     }
 
     TTF_Font *font = TTF_OpenFont("./assets/Terminal.ttf", 40);
-    if (font == NULL) {
+    if (font == NULL)
+    {
         printf("TTF_OpenFont() failed: %s\n", TTF_GetError());
         cleanup(win, renderer);
         return 1;
@@ -72,22 +79,27 @@ int main() {
     SDL_Texture *backgroundTexture = NULL;
     SDL_Surface *backgroundSurface = IMG_Load("./assets/bg_purple.png");
 
-    if (backgroundSurface == NULL) {
+    if (backgroundSurface == NULL)
+    {
         printf("Failed to load background image: %s\n", IMG_GetError());
         cleanup(win, renderer);
         return 1;
     }
 
     backgroundTexture = SDL_CreateTextureFromSurface(renderer, backgroundSurface);
-    if (backgroundTexture == NULL) {
+    if (backgroundTexture == NULL)
+    {
         printf("Failed to create background texture: %s\n", SDL_GetError());
         cleanup(win, renderer);
         return 1;
     }
 
-    while (!quit) {
-        while (SDL_PollEvent(&exit)) {
-            if (exit.type == SDL_QUIT) {
+    while (!quit)
+    {
+        while (SDL_PollEvent(&exit))
+        {
+            if (exit.type == SDL_QUIT)
+            {
                 quit = true;
             }
         }
