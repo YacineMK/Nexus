@@ -7,7 +7,7 @@
 2. **Clone the repository to your local machine:**
 
    ```shell
-   git clone <repository-url>
+   git clone https://github.com/YacineMK/smail
    ```
 3. **download libs**
 
@@ -29,4 +29,6 @@
    gcc startpage.c -o myprograme -lSDL2 -lSDL2_ttf -lSDL2_image
    ```
 
-   ```./mymyprograme```
+   ```shell
+   ./mymyprograme
+   ```
