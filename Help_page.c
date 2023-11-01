@@ -4,11 +4,16 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
-
+#include <unistd.h>
 
 // Function to check if a point is inside a rectangle
 bool isInsideRect(int x, int y, SDL_Rect rect) {
     return x >= rect.x && x <= rect.x + rect.w && y >= rect.y && y <= rect.y + rect.h;
+}
+
+// Function to handle button clicks and print messages
+void handleButtonClick(const char *buttonName) {
+    printf("%s Button Clicked!\n", buttonName);
 }
 
 int main() {
@@ -22,7 +27,7 @@ int main() {
     TTF_Init();
 
     // Load the background image
-    SDL_Surface *backgroundSurface = IMG_Load("./assets/bg_purple.png");
+    SDL_Surface *backgroundSurface = IMG_Load("bg_purple.png");
     if (!backgroundSurface) {
         printf("Failed to load the background image.\n");
         return 1;
@@ -31,7 +36,7 @@ int main() {
     SDL_FreeSurface(backgroundSurface);
 
     // Load the text file
-    const char *filename = "./assets/our_text.txt";
+    const char *filename = "our_text.txt";
     FILE *file = fopen(filename, "r");
     if (!file) {
         printf("Failed to open the text file.\n");
@@ -50,28 +55,25 @@ int main() {
 
     fclose(file);
 
-    // Create a "Back to Home Page" button with increased margins and adjusted dimensions
-    TTF_Font *font = TTF_OpenFont("./assets/help_font.ttf", 26); // Adjust font size for the main text
-    TTF_Font *buttonFont = TTF_OpenFont("./assets/Terminal.ttf", 30); // Adjust font size for the button text
-    SDL_Color buttonColor = {255, 255, 255}; // White background color
-    SDL_Color textColor = {0, 0, 0}; // Black text color
-
-    SDL_Surface *buttonTextSurface = TTF_RenderText_Solid(buttonFont, "Home", textColor);
-    SDL_Texture *buttonTextTexture = SDL_CreateTextureFromSurface(renderer, buttonTextSurface);
+    // Create a "Home" button
+    TTF_Font *font = TTF_OpenFont("Help_font.ttf", 26); // Adjust font size for the main text
+    TTF_Font *buttonFont = TTF_OpenFont("Terminal.ttf", 30); // Adjust font size for the button text
+    SDL_Color textColor = {255, 255, 255}; // White text color
 
     // Define the button's position and dimensions with margins
-    int buttonX = 275; // X-coordinate of the button
+    int buttonX = 340; // X-coordinate of the button
     int buttonY = 530; // Y-coordinate of the button
-    int buttonWidth = 250; // Width of the button
-    int buttonHeight = 60; // Height of the button
+    int buttonWidth = 120; // Width of the button
+    int buttonHeight = 40; // Height of the button
 
     SDL_Rect buttonTextRect = {buttonX, buttonY, buttonWidth, buttonHeight};
+    SDL_Surface *buttonTextSurface = TTF_RenderText_Solid(buttonFont, "Home", textColor);
+    
+    int textWidth, textHeight;
+    TTF_SizeText(buttonFont, "Home", &textWidth, &textHeight);
 
-    // Calculate the position to center the text within the button
-    int textX = buttonX + (buttonWidth - buttonTextSurface->w) / 2;
-    int textY = buttonY + (buttonHeight - buttonTextSurface->h) / 2;
-
-    SDL_Rect textPosition = {textX, textY, buttonTextSurface->w, buttonTextSurface->h};
+    SDL_Texture *buttonTextTexture = SDL_CreateTextureFromSurface(renderer, buttonTextSurface);
+    SDL_Rect textPosition = {buttonX + (buttonWidth - textWidth) / 2, buttonY + (buttonHeight - textHeight) / 2, textWidth, textHeight};
 
     // Event loop
     bool quit = false;
@@ -85,9 +87,10 @@ int main() {
                 int mouseX = event.button.x;
                 int mouseY = event.button.y;
                 if (isInsideRect(mouseX, mouseY, buttonTextRect)) {
-                    // Handle button click action, e.g., navigate back to the home page
-                    // Add your logic here.
+                    // Handle button click action and print a message
+                    handleButtonClick("Home");
                 }
+                // Add more conditions for other buttons if needed
             }
         }
 
@@ -99,7 +102,8 @@ int main() {
         SDL_RenderCopy(renderer, backgroundTexture, NULL, NULL);
 
         // Render the text from the file
-        SDL_Surface *textSurface = TTF_RenderText_Blended_Wrapped(font, text, buttonColor, 600); // 800 is the line width
+        TTF_SetFontStyle(font, TTF_STYLE_NORMAL); // Reset font style
+        SDL_Surface *textSurface = TTF_RenderText_Blended_Wrapped(font, text, textColor, 600); // 800 is the line width
         SDL_Texture *textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
         SDL_Rect dstRect = {(800 - textSurface->w) / 2, 30, textSurface->w, textSurface->h};
 
@@ -108,9 +112,9 @@ int main() {
         SDL_DestroyTexture(textTexture);
         SDL_FreeSurface(textSurface);
 
-        // Render the "Back to Home Page" button with a white background
-        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255); // Set the background color to white
-        SDL_RenderFillRect(renderer, &buttonTextRect);
+        // Render the "Home" button with a rectangle around it
+        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255); // Set the color for the rectangle (white in this case)
+        SDL_RenderDrawRect(renderer, &buttonTextRect); // Draw a rectangle around the button
         SDL_RenderCopy(renderer, buttonTextTexture, NULL, &textPosition);
 
         // Present the renderer
@@ -119,9 +123,10 @@ int main() {
 
     // Cleanup
     TTF_CloseFont(font);
+    TTF_CloseFont(buttonFont);
     TTF_Quit();
     SDL_DestroyTexture(backgroundTexture);
-    SDL_DestroyTexture(buttonTextTexture); // Cleanup the button texture
+    SDL_DestroyTexture(buttonTextTexture);
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
