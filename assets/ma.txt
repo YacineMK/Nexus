@@ -1,0 +1,13 @@
+"Jeu de memoire"
+
+*is a game involving a human player and a machine on an N*N grid with diagonals. 
+
+
+*It has two phases: memorization and prediction. 
+
+
+*Players must remember diagonal orientations and predict the ball's path, which changes upon touching diagonals.
+*The game offers a main menu, score display, high scores, and multiple levels with advancing difficulty. 
+
+
+*It combines memory and puzzle elements, making it engaging and strategic for players.
