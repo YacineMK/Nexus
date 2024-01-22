@@ -7,7 +7,7 @@
 2. **Fork the repository and clone the repository to your local machine:**
 
    ```shell
-   git clone https://github.com/<your_github_username>/smail
+   git clone https://github.com/YacineMK/smail
    ```
 3. **installing dependecies**
    1. **Fedora**
