@@ -1,4 +1,4 @@
-# smail
+# Nexus
 
 ### Project setup
 
@@ -28,3 +28,4 @@
    ```shell
    ./mymyprograme
    ```
+

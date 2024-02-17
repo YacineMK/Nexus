@@ -1,0 +1,9 @@
+"MindMaze"
+
+	  Il s'agit d'un jeu impliquant un joueur 
+et une machine sur une grille NxN avec 
+des diagonales.
+	  Il comporte deux phases : la memorisation et la prediction.
+	  Les joueurs doivent se rappeler des orientations diagonales et predire le trajet de la balle, qui change au contact des diagonales.
+	  Le jeu propose un menu principal, un affichage des scores, des classements eleves et plusieurs niveaux de difficulte croissante.
+	  Il combine des elements de memoire et de casse-tete, le rendant captivant et strategique pour les joueurs.
