@@ -12,12 +12,12 @@
 3. **installing dependecies**
    1. **Fedora**
       ```shell
-      sudo dnf install SDL2 SDL2_image-devel SDL2_ttf
+      sudo dnf install SDL2 SDL2_image-devel SDL2_ttf SDL2_mixer SDL2_mixer-devel
       ```
 
    3. **Arch**
       ```shell
-      sudo pacman -S install sdl2 sdl2_image sdl2_ttf
+      sudo pacman -S install sdl2 sdl2_image sdl2_ttf SDL2_mixer SDL2_mixer-devel
       ```
 5. **Run code**
 
