@@ -1,8 +1,8 @@
 # Nexus
 
-![home](./@ nexus.png)
+![home](./@Nexus.png)
+![game](./@nexus.png)
 
-![game](./@Nexus.png)
 
 ### Project setup
 
