@@ -1,5 +1,9 @@
 # Nexus
 
+![home](./@ nexus.png)
+
+![game](./@Nexus.png)
+
 ### Project setup
 
 1. **Download sdl2**
